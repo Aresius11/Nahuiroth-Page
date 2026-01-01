@@ -1,0 +1,758 @@
+/* Variables de Color Modernas */
+:root {
+    --bg-color: #0a0a0a;
+    --card-bg: #141414;
+    --accent-red: #8b0000;
+    --text-main: #e0e0e0;
+    --text-muted: #888;
+    --border: rgba(255, 255, 255, 0.05);
+    --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- NAVEGACIÓN --- */
+/* --- NAVEGACIÓN DINÁMICA --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    /* Estado inicial transparente */
+    background: rgba(10, 10, 10, 0); 
+    backdrop-filter: blur(0px);
+    border-bottom: 1px solid transparent;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Clase que se activará con JavaScript al hacer scroll */
+.navbar.scrolled {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 1rem 5%; /* Se encoge un poco al bajar */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Asegurar que el logo y links se vean bien siempre */
+.logo {
+    font-family: 'Syncopate', sans-serif;
+    font-weight: 700;
+    letter-spacing: 4px;
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--accent-red);
+}
+
+#menu-toggle, .menu-icon { display: none; }
+
+/* --- GRID BENTO --- */
+.bento-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 250px);
+    gap: 1.5rem;
+    padding: 100px 5% 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.bento-item {
+    background: var(--card-bg);
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.bento-item:hover {
+    transform: translateY(-5px);
+    border-color: rgba(139, 0, 0, 0.4);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* --- SECCIONES ESPECÍFICAS --- */
+
+/* Hero Section */
+/* Sección Home con Imagen de Fondo */
+.hero {
+    grid-column: span 3;
+    grid-row: span 2;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(10, 10, 10, 0.9)), 
+        url('nahuiroth.jpeg');
+    background-size: cover;
+    background-position: center 20%; /* Ajusta el enfoque de la foto */
+    background-attachment: scroll; /* Cambiar a 'fixed' para efecto paralaje en PC */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.hero:hover {
+    /* Al pasar el cursor, la imagen se aclara un poco y el borde brilla */
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(10, 10, 10, 0.8)), 
+        url('nahuiroth.jpeg');
+    background-size: cover;
+    background-position: center 20%;
+    border-color: var(--accent-red);
+}
+
+.hero h1 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(3rem, 10vw, 7rem); /* Tamaño fluido según pantalla */
+    letter-spacing: 20px;
+    color: #fff;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+    z-index: 2;
+}
+
+.hero p {
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 0.9rem;
+    color: var(--accent-red);
+    font-weight: 600;
+    margin-top: -10px;
+    z-index: 2;
+}
+
+/* Music Card */
+/* Sección Música con Imagen de Fondo */
+.music-card {
+    grid-column: span 1;
+    grid-row: span 2;
+    /* La imagen se carga con un gradiente negro para que el texto resalte */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('Espectro.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Alinea el contenido al fondo de la tarjeta */
+    padding: 2rem;
+    position: relative;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.music-card:hover {
+    /* Efecto de zoom suave en el fondo al pasar el cursor */
+    background: linear-gradient(rgba(139, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), 
+                url('Espectro.jpeg');
+    background-size: 110%; /* Pequeño efecto de zoom */
+    background-position: center;
+}
+
+.music-card h3 {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: var(--accent-red);
+    margin-bottom: 5px;
+}
+
+.music-card h2 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* Galería / Fotos */
+.gallery-small-2 {
+    grid-column: span 1;
+    background: linear-gradient(45deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)), url('estudio.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+/* El icono estilo Bootstrap */
+.gallery-icon-wrapper {
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+.gallery-small-2 .overlay-text {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: #fff;
+    z-index: 2;
+    opacity: 0.8;
+}
+
+/* Efecto de Botón Moderno al pasar el cursor */
+.gallery-small-2:hover {
+    transform: scale(0.98); /* Se hunde un poco como un botón real */
+    border-color: var(--accent-red);
+    box-shadow: inset 0 0 20px rgba(139, 0, 0, 0.3);
+}
+
+.gallery-small-2:hover .gallery-icon-wrapper {
+    color: var(--accent-red);
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.gallery-small-2:hover .overlay-text {
+    opacity: 1;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Brillo dinámico (Glossy effect) */
+.btn-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.1) 50%, 
+        rgba(255,255,255,0) 100%
+    );
+    transform: skewX(-25deg);
+    transition: none;
+}
+
+.gallery-small-2:hover .btn-shine {
+    left: 150%;
+    transition: all 0.8s ease;
+}
+
+/* Contenedor de botones en grid para que quepan todos */
+.platforms-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    width: 100%;
+}
+/* --- EFECTO GLITCH DINÁMICO --- */
+.glitch {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+/* Capa roja desplazada */
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--accent-red);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+/* Capa azul/gris desplazada */
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #49FC00; /* Un verde vibrante o puedes usar blanco #fff */
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 1s infinite linear alternate-reverse;
+}
+
+/* Animaciones de distorsión */
+@keyframes glitch-anim {
+    0% { clip: rect(31px, 9999px, 94px, 0); }
+    20% { clip: rect(62px, 9999px, 42px, 0); }
+    40% { clip: rect(16px, 9999px, 78px, 0); }
+    60% { clip: rect(87px, 9999px, 11px, 0); }
+    80% { clip: rect(23px, 9999px, 98px, 0); }
+    100% { clip: rect(54px, 9999px, 33px, 0); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(65px, 9999px, 100px, 0); }
+    20% { clip: rect(12px, 9999px, 56px, 0); }
+    40% { clip: rect(95px, 9999px, 12px, 0); }
+    60% { clip: rect(41px, 9999px, 88px, 0); }
+    80% { clip: rect(73px, 9999px, 4px, 0); }
+    100% { clip: rect(29px, 9999px, 63px, 0); }
+}
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    /* Aseguramos que las capas sigan el mismo espaciado */
+    letter-spacing: 12px; 
+}
+
+/* Reducimos un poco el texto secundario también */
+.hero p {
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.8rem; /* Un poco más pequeño y fino */
+    color: var(--accent-red);
+    font-weight: 500;
+    opacity: 0.9;
+    z-index: 2;
+}
+
+/* Animación de entrada al cargar */
+.hero h1 {
+    font-family: 'Syncopate', sans-serif;
+    /* Reducimos el tamaño: antes era 7rem, ahora máximo 4.5rem */
+    font-size: clamp(2.5rem, 6vw, 4.5rem); 
+    /* Reducimos el espaciado de letras para que sea más legible */
+    letter-spacing: 12px; 
+    color: #fff;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    margin-bottom: 10px;
+    z-index: 2;
+    text-transform: uppercase;
+}
+
+@keyframes fadeInGlitch {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+
+/* Estilo base de los botones de plataforma */
+.btn-platform {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: var(--transition);
+    color: white; /* Texto blanco para casi todos */
+}
+
+.btn-platform:hover {
+    transform: scale(1.03);
+    filter: brightness(1.2);
+}
+
+/* Colores específicos solicitados */
+.spotify {
+    background-color: #1DB954; /* Verde Spotify */
+}
+
+.apple {
+    background-color: #FFFFFF; /* Blanco Apple Music */
+    color: #000000; /* Texto negro para legibilidad */
+}
+
+.youtube {
+    background-color: #FF0000; /* Rojo YouTube */
+}
+
+.amazon {
+    background-color: #002236; /* Azul Marino Amazon Music */
+}
+
+.deezer {
+    background-color: #EF5466; /* Rosa/Rojo Deezer */
+}
+
+/* Ajuste para que la tarjeta de música crezca si hay muchos botones */
+.music-card {
+    justify-content: flex-end;
+    height: 100%;
+}
+
+/* Noticias */
+/* --- SECCIÓN DE NOTICIAS CON FONDOS DINÁMICOS --- */
+.news-feed {
+    grid-column: span 2; /* Ocupa 2 columnas */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* El contenido se distribuye */
+    padding: 2rem;
+    position: relative;
+    overflow: hidden; /* Importante para el cambio de fondo */
+    border: 1px solid var(--border);
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out; /* Transición para el fondo */
+}
+
+/* Overlay para oscurecer la imagen y que el texto sea legible */
+.news-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)); /* Oscurece el fondo */
+    z-index: 1;
+}
+
+.news-tag {
+    font-size: 0.7rem;
+    background: var(--accent-red);
+    color: #fff;
+    width: fit-content;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    z-index: 2; /* Para que esté por encima del overlay */
+}
+
+.news-slider-content {
+    position: relative;
+    height: 120px; /* Altura fija para el contenido del slider */
+    margin-top: 1rem;
+    z-index: 2; /* Por encima del overlay */
+}
+
+.news-slide {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Transición para el contenido */
+    color: var(--text-main);
+    top: 0;
+    left: 0;
+}
+
+.news-slide.active {
+    opacity: 1;
+}
+
+.news-slide h4 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.news-slide p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Responsividad para la sección de noticias */
+@media (max-width: 900px) {
+    .news-feed {
+        grid-column: span 2;
+        padding: 1.5rem;
+    }
+}
+@media (max-width: 600px) {
+    .news-feed {
+        grid-column: span 1;
+    }
+}
+
+/* Video */
+.video-section {
+    grid-column: span 1;
+    background: #000;
+    align-items: center;
+}
+
+.play-button {
+    font-size: 3rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.play-button:hover { color: var(--accent-red); transform: scale(1.1); }
+
+/* Formulario */
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    padding: 15px;
+    color: white;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    transition: var(--transition);
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-red);
+    background: rgba(139, 0, 0, 0.05);
+}
+
+.contact-form button {
+    background: var(--text-main);
+    color: var(--bg-color);
+    border: none;
+    padding: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    text-transform: uppercase;
+    transition: var(--transition);
+}
+
+.contact-form button:hover {
+    background: var(--accent-red);
+    color: white;
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+}
+/* Hacer la sección de contacto más grande en el Grid */
+.contact-form {
+    grid-column: span 2 !important; /* Ahora ocupa 2 columnas */
+    grid-row: span 2 !important;    /* Ahora ocupa 2 filas de alto */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 3rem !important;
+}
+
+.contact-header {
+    margin-bottom: 2rem;
+}
+
+.contact-header h2 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.8rem;
+    margin: 10px 0;
+    color: var(--accent-red);
+}
+
+/* Grid interno del formulario */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+/* Botón de envío Moderno y Dinámico */
+.submit-btn {
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(90deg, #1a1a1a, #2a2a2a);
+    color: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-family: 'Syncopate', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: var(--transition);
+}
+
+.submit-btn i {
+    transition: var(--transition);
+}
+
+.submit-btn:hover {
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+    transform: translateY(-3px);
+}
+
+.submit-btn:hover i {
+    transform: translateX(10px) translateY(-10px);
+    color: white;
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Ajuste responsivo para el formulario */
+@media (max-width: 600px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .contact-form {
+        grid-column: span 1 !important;
+        padding: 1.5rem !important;
+    }
+}
+
+/* --- FOOTER --- */
+.footer {
+    padding: 4rem 5%;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+.social-links {
+    margin-bottom: 1rem;
+}
+
+.social-links a {
+    color: var(--text-muted);
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* --- RESPONSIVO --- */
+@media (max-width: 900px) {
+    .bento-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+    }
+    .hero, .music-card, .news-feed {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .bento-container {
+        grid-template-columns: 1fr;
+    }
+    .hero, .music-card, .news-feed, .gallery-small-1, .gallery-small-2, .video-section, .contact-form {
+        grid-column: span 1;
+    }
+    .menu-icon { display: block; cursor: pointer; }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-color);
+        padding: 2rem;
+    }
+    #menu-toggle:checked ~ .nav-links { display: flex; }
+}
+/* Estilos para Iconos de Redes Sociales */
+.social-links {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.social-links a {
+    color: var(--text-main);
+    font-size: 1.8rem;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    color: var(--accent-red);
+    transform: translateY(-5px);
+}
+
+/* Clase para el efecto de revelación con JS */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilo para el slider de noticias */
+.news-slider {
+    position: relative;
+    height: 100px;
+    overflow: hidden;
+}
+
+.news-slide {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.news-slide.active {
+    opacity: 1;
+}
