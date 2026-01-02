@@ -106,3 +106,68 @@ window.addEventListener('scroll', handleNavbarScroll);
 document.addEventListener('DOMContentLoaded', () => {
     handleNavbarScroll();
 });
+// Listado de tus 6 fotos (Asegúrate de tener estos archivos)
+const galleryImages = [
+    'Jukka.jpg',
+    'Renata.jpeg',
+    'Leonardo.jpg',
+    'Leonardo2.jpg',
+    'Nahui.jpg',
+    'Nahui2.jpg'
+];
+
+let currentIndex = 0;
+const lightbox = document.getElementById('gallery-lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const currentPhotoText = document.getElementById('current-photo');
+
+// 1. Abrir Galería al dar click en la sección (asumiendo que tiene la clase .gallery-small-2)
+document.querySelector('.gallery-small-2').addEventListener('click', () => {
+    currentIndex = 0;
+    openLightbox();
+});
+
+function openLightbox() {
+    updateImage();
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Evita scroll atrás
+}
+
+// 2. Cerrar Galería
+document.querySelector('.close-lightbox').addEventListener('click', () => {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+});
+
+// 3. Cambiar Imagen
+function changeImage(direction) {
+    currentIndex += direction;
+    
+    // Bucle infinito de fotos
+    if (currentIndex >= galleryImages.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = galleryImages.length - 1;
+    
+    updateImage();
+}
+
+function updateImage() {
+    lightboxImg.src = galleryImages[currentIndex];
+    currentPhotoText.innerText = currentIndex + 1;
+}
+
+// 4. Cerrar al hacer click fuera de la imagen
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// 5. Soporte para teclado (Esc y flechas)
+document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    
+    if (e.key === "Escape") lightbox.classList.remove('active');
+    if (e.key === "ArrowRight") changeImage(1);
+    if (e.key === "ArrowLeft") changeImage(-1);
+});

@@ -114,7 +114,21 @@
     <p>&copy; 2024 NAHUIROTH - Todos los derechos reservados.</p>
 </footer>
 
+<div id="gallery-lightbox" class="lightbox">
+    <span class="close-lightbox">&times;</span>
+    
+    <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="Nahuiroth Gallery">
+        
+        <button class="prev-btn" onclick="changeImage(-1)">&#10094;</button>
+        <button class="next-btn" onclick="changeImage(1)">&#10095;</button>
+    </div>
+
+    <div class="photo-counter"><span id="current-photo">1</span> / 6</div>
+</div>
+
 <script src="script.js"></script>
+
 
 </body>
 </html>
